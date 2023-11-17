@@ -40,7 +40,6 @@ export const useChatSocket = ({
         }
 
         const newData = oldData.pages.map((page: any) => {
-          console.log("called")
           return {
             ...page,
             items: page.items.map((item: MessageWithMemberWithProfile) => {
@@ -60,6 +59,7 @@ export const useChatSocket = ({
     });
 
     socket.on(addKey, (message: MessageWithMemberWithProfile) => {
+                console.log("called")
       queryClient.setQueryData([queryKey], (oldData: any) => {
         if (!oldData || !oldData.pages || oldData.pages.length === 0) {
           return {
@@ -87,6 +87,7 @@ export const useChatSocket = ({
     });
 
     return () => {
+                console.log("called")
       socket.off(addKey);
       socket.off(updateKey);
     }
