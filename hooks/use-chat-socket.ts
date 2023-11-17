@@ -40,6 +40,7 @@ export const useChatSocket = ({
         }
 
         const newData = oldData.pages.map((page: any) => {
+          console.log(called)
           return {
             ...page,
             items: page.items.map((item: MessageWithMemberWithProfile) => {
