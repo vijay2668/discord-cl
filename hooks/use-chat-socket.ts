@@ -24,10 +24,6 @@ export const useChatSocket = ({
   const { socket } = useSocket();
   const queryClient = useQueryClient();
 
-  console.log("addKey", addKey);
-  console.log("updateKey", updateKey);
-  console.log("queryKey", queryKey);
-
   useEffect(() => {
     if (!socket) {
       return;
@@ -59,7 +55,6 @@ export const useChatSocket = ({
     });
 
     socket.on(addKey, (message: MessageWithMemberWithProfile) => {
-                console.log("called")
       queryClient.setQueryData([queryKey], (oldData: any) => {
         if (!oldData || !oldData.pages || oldData.pages.length === 0) {
           return {
@@ -87,7 +82,6 @@ export const useChatSocket = ({
     });
 
     return () => {
-                console.log("called")
       socket.off(addKey);
       socket.off(updateKey);
     }
